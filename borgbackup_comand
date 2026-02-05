@@ -1,0 +1,14 @@
+lsblk
+sudo mkfs.ext4 /dev/sdc
+sudo mkdir /backup
+sudo mount /dev/sdc /backup
+df -h | grep backup
+sudo apt update
+sudo apt install -y borgbackup
+borg --version
+sudo mkdir /backup/borg
+sudo chown -R ubuntu:ubuntu /backup
+borg init --encryption=repokey /backup/borg
+borg create   --stats   /backup/borg::first-backup   /etc   /home   /var   /root
+borg list /backup/borg
+borg info /backup/borg::first-backup
