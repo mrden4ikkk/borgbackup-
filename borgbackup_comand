@@ -12,3 +12,19 @@ borg init --encryption=repokey /backup/borg
 borg create   --stats   /backup/borg::first-backup   /etc   /home   /var   /root
 borg list /backup/borg
 borg info /backup/borg::first-backup
+
+_______________________________________________
+lsblk
+sudo mkdir /backup
+sudo mount /dev/sdb /backup
+df -h | grep backup
+sudo apt update
+sudo apt install -y borgbackup
+borg list /backup/borg
+cd /
+sudo borg extract   --progress   /backup/borg::first-backup
+sudo chown -R root:root /etc
+sudo chown -R root:root /root
+sudo systemctl daemon-reload
+sudo systemctl restart ssh
+sudo reboot
