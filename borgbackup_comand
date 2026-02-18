@@ -6,6 +6,9 @@ sudo mkdir /backup
 sudo mount /dev/sdc /backup
 df -h | grep backup
 sudo apt update
+
+(sudo dpkg --configure -a)??????
+
 sudo apt install -y borgbackup
 borg --version
 sudo mkdir /backup/borg
