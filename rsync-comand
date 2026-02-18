@@ -1,1 +1,32 @@
+lsblk
+
+sudo mkfs.ext4 /dev/sdb1         FORMAT
+
+
+sudo mkdir /backup
+sudo mount /dev/sdb1 /backup
+df -h | grep backup
+sudo mkdir /backup/system
+
+sudo rsync -aAXHv --delete \
+/ \
+/backup/system \
+--exclude=/dev/* \
+--exclude=/proc/* \
+--exclude=/sys/* \
+--exclude=/tmp/* \
+--exclude=/run/* \
+--exclude=/mnt/* \
+--exclude=/media/* \
+--exclude=/lost+found
+
+ls /backup/system
+_____________________________________________________
+
+sudo mount /dev/sdb1 /mnt
+sudo rsync -aAXHv /mnt/system/ /
+
+sudo grub-install /dev/sda
+sudo update-grub
+
 
