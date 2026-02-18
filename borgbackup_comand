@@ -1,6 +1,8 @@
 lsblk
-sudo mkfs.ext4 /dev/sdc
+
+sudo mkfs.ext4 /dev/sdc  FORMAT
 sudo mkdir /backup
+
 sudo mount /dev/sdc /backup
 df -h | grep backup
 sudo apt update
